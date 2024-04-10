@@ -1,10 +1,19 @@
 using Unity.Netcode;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace NetworkMovement
 {
     public class NetworkMovementManager : MonoBehaviour
     {
+        public List<Color> colors;
+        public static NetworkMovementManager instance;
+
+        void Awake() {
+            instance = this;
+        }
+
         void OnGUI()
         {
             GUILayout.BeginArea(new Rect(10, 10, 300, 300));
@@ -20,7 +29,6 @@ namespace NetworkMovement
         {
             if (GUILayout.Button("Host")) NetworkManager.Singleton.StartHost();
             if (GUILayout.Button("Client")) NetworkManager.Singleton.StartClient();
-            if (GUILayout.Button("Server")) NetworkManager.Singleton.StartServer();
         }
     }
 }

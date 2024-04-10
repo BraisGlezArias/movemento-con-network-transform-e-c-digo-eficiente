@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 782628377}
   - component: {fileID: 782628376}
   m_Layer: 0
-  m_Name: HelloWorldManager
+  m_Name: NetworkMovementManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -448,6 +448,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cf4c04f0c4bc149bfccefd32816659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colors:
+  - {r: 1, g: 0, b: 0.045656204, a: 0}
+  - {r: 1, g: 0.42864963, b: 0, a: 0}
+  - {r: 1, g: 0.93506396, b: 0, a: 0}
+  - {r: 0.21205127, g: 1, b: 0, a: 0}
+  - {r: 0, g: 0.78368235, b: 1, a: 0}
+  - {r: 0.48854113, g: 0, b: 1, a: 0}
+  - {r: 1, g: 0, b: 0.75303125, a: 0}
 --- !u!4 &782628377
 Transform:
   m_ObjectHideFlags: 0
