@@ -74,6 +74,18 @@ namespace NetworkMovement
         void SubmitMoveServerRpc(Vector3 movement, RpcParams rpcParams = default) {
             transform.position += movement;
 
+            if (transform.position.x > 4.5f) {
+                transform.position = new Vector3(4.5f, transform.position.y, transform.position.z);
+            } else if (transform.position.x < -4.5f) {
+                transform.position = new Vector3(-4.5f, transform.position.y, transform.position.z);
+            } 
+            
+            if (transform.position.z < -4.5f) {
+                transform.position = new Vector3(transform.position.x, transform.position.y, -4.5f);
+            } else if (transform.position.z > 4.5f) {
+                transform.position = new Vector3(transform.position.x, transform.position.y, 4.5f);
+            }
+
             if (transform.position.y < 1f) {
                 transform.position = new Vector3(transform.position.x, 1f, transform.position.z);   
             }
