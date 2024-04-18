@@ -76,14 +76,11 @@ namespace NetworkMovement
                 Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * moveSpeed * Time.fixedDeltaTime;
                 if (Authority.Value == 0) {
                     SubmitMoveServerRpc(movement);
-                    Debug.Log("Servidor");
                 } else if (Authority.Value == 1) {
-                    SubmitMoveClient(movement);
+                    SubmitMoveClientRpc(movement);
                     SubmitMoveServerRpc(movement);
-                    Debug.Log("Servidor con Rewind");
                 } else if (Authority.Value == 2) {
-                    SubmitMoveClient(movement);
-                    Debug.Log("Cliente");
+                    SubmitMoveClientRpc(movement);
                 }
             }
         }
@@ -93,7 +90,8 @@ namespace NetworkMovement
             SubmitMove(movement, false);
         }
 
-        void SubmitMoveClient(Vector3 movement) {
+        [Rpc(SendTo.ClientsAndHost)]
+        void SubmitMoveClientRpc(Vector3 movement, RpcParams rpcParams = default) {
             SubmitMove(movement, true);
         }
 
@@ -125,8 +123,8 @@ namespace NetworkMovement
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
         }
 
-        [ClientRpc]
-        void SubmitJumpClientRpc() {
+        [Rpc(SendTo.ClientsAndHost)]
+        void SubmitJumpClientRpc(RpcParams rpcParams = default) {
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
         }
 
